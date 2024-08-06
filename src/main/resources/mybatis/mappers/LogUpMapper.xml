@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.logUp.LogUpMapper">
+    <insert id="createUser" parameterType="com.example.mybatis.logUp.LogUp">
+        INSERT INTO user(username, full_name, date_of_birth, email, password)
+        VALUES (#{username}, #{fullName}, #{dateOfBirth}, #{email}, #{password});
+    </insert>
+
+    <select id="users" resultType="com.example.mybatis.logUp.LogUp">
+        SELECT * FROM user;
+    </select>
+
+    <select id="readOneUser" parameterType="int" resultType="com.example.mybatis.logUp.LogUp">
+        SELECT * FROM user WHERE id=#{id};
+    </select>
+
+    <update id="updateUser" parameterType="com.example.mybatis.logUp.LogUp">
+        UPDATE user
+        SET
+            username=#{username},
+            full_name= #{fullName},
+            date_of_birth= #{dateOfBirth},
+            email= #{email},
+            password= #{password}
+        WHERE id= #{id};
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM user
+        WHERE id = #{id};
+    </delete>
+</mapper>
